@@ -1,0 +1,529 @@
+"use client";
+
+import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import HomeClientLogic from '@/components/HomeClientLogic';
+
+export default function Home() {
+  // Add state/refs for dropdowns and animations
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+  const toggleDropdown = (id: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    setActiveDropdown(activeDropdown === id ? null : id);
+    if (activeDropdown !== id) {
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
+  };
+
+  useEffect(() => {
+    // Logic is in HomeClientLogic
+  }, []);
+
+  return (
+    <main>
+      {/* Inject the logic component without wrapping */}
+      <HomeClientLogic />
+
+      <div id="loader-screen" className="loader-screen">
+        <video className="loader-video" src="./assets/PencilBomb_GreenPulse_Loop_Landscape_TrueWhite_4K.mp4" preload="auto"
+            autoPlay loop muted playsInline disablePictureInPicture></video>
+    </div>
+
+    {/*  Header/Nav  */}
+    <header className="site-header">
+        <a href="#" className="logo">
+            <img src="./assets/Machinga logo with text.png" alt="Machinga" className="header-logo-img" />
+        </a>
+        <button className="menu-toggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav className="desktop-nav">
+            <a href="#">Home</a>
+            <a href="#work">Work</a>
+            <a href="#statement">How we work</a>
+            <a href="#about">About</a>
+            <a href="#contact" className="nav-contact">Contact Us</a>
+        </nav>
+    </header>
+
+    {/*  ═══════════════════════════════════════
+         CANVAS SCROLL SECTION
+         ═══════════════════════════════════════  */}
+    <section id="video-section" className="video-section">
+
+        {/*  Image sequence canvas  */}
+        <canvas id="hero-canvas"></canvas>
+
+        {/*  Wind overlay canvas  */}
+        <canvas id="wind-canvas"></canvas>
+
+        {/*  Progress rail (right) — dots are clickable  */}
+        <div id="progress-rail"></div>
+
+        {/*  Chapter label (bottom-left)  */}
+        <div id="chapter-label"></div>
+
+        {/*  Green pulse dots (left — shown during loop/pause)  */}
+        <div id="dwell-indicator">
+            <div className="dwell-dot"></div>
+            <div className="dwell-dot"></div>
+            <div className="dwell-dot"></div>
+        </div>
+
+        {/*  Scroll progress bar (bottom)  */}
+        <div id="continue-wrap">
+            <div id="continue-inner">
+                <span id="continue-label">Scroll to continue</span>
+                <div id="continue-track">
+                    <div id="continue-fill"></div>
+                </div>
+                <span id="continue-arrow">↓</span>
+            </div>
+        </div>
+
+        {/*  Transition label (top-right)  */}
+        <div id="transition-label"></div>
+
+        {/*  Global video progress bar (very bottom edge)  */}
+        <div id="progress-bar-wrap">
+            <div id="progress-bar-fill"></div>
+        </div>
+
+    </section>
+
+    {/*  Intro Statement Section  */}
+    <section className="intro-statement-section" id="strategic-brain">
+        <div className="container intro-container">
+            <h2 className="intro-text">Need a full content team? We'll embed with you. Already have production capacity?
+                We'll provide the strategic brain. Either way, the thinking comes first.</h2>
+            <a href="#work" className="btn-gradient-circles">
+                <span className="btn-circle btn-circle-left"></span>
+                <span className="btn-text">See Our Work</span>
+                <span className="btn-circle btn-circle-right"></span>
+            </a>
+        </div>
+    </section>
+
+    {/*  Work Section  */}
+    <section className="fs-cards-section" id="work">
+        <div className="fs-card">
+            <video className="fs-card-bg" src="./assets/Appreciate.MP4" autoPlay loop muted playsInline></video>
+            <div className="fs-card-content">
+                <h2 className="fs-card-title">APPRECIATE</h2>
+                <p className="fs-card-sub">How a fintech compounds interest</p>
+                <p className="fs-card-text">0 &rarr; 124K followers in 18 months</p>
+                <div className="fs-card-tags">
+                    <span className="fs-tag">Content Engine</span>
+                    <span className="fs-tag">Always - On</span>
+                    <span className="fs-tag">Fintech</span>
+                </div>
+            </div>
+            <div className="scroll-down-indicator"><a href="#" onClick={(e) => toggleDropdown('details-1', e)} className="toggle-details" data-target="details-1"
+                    style={{'color': 'white', 'textDecoration': 'none'}}><span>Details</span></a> <span
+                    className="arrow">&darr;</span></div>
+        </div>
+
+        <div id="details-1" className={`card-details-dropdown ${activeDropdown === 'details-1' ? 'open' : ''}`}>
+            <div className="card-details-container">
+                <div className="details-left-side">
+                    <h4 className="details-section-title">The Insight</h4>
+                    <p className="details-section-text">Finance content doesn't have to be boring. Everyone was educating. Nobody was entertaining. The insight: make finance feel like culture, not curriculum.</p>
+                    <h4 className="details-section-title">The Work</h4>
+                    <p className="details-section-text">We built a content engine from scratch. Multi-format, high-frequency, relentlessly consistent. An animal podcast explaining IPOs. Investigative deep-dives. Creator collabs before creators blew up. 6–8 pieces per week, every week, for 18 months.</p>
+                    <a href="/appreciate" className="details-btn">View Full Case Study</a>
+                </div>
+                <div className="details-right-side">
+                    <div className="stats-grid">
+                        <div className="stat-box">
+                            <div className="stat-number">124K+</div>
+                            <div className="stat-label">Followers From Zero</div>
+                        </div>
+                        <div className="stat-box">
+                            <div className="stat-number">68%</div>
+                            <div className="stat-label">Lower CPL</div>
+                        </div>
+                        <div className="stat-box">
+                            <div className="stat-number">1M+</div>
+                            <div className="stat-label">Views Twice Monthly</div>
+                        </div>
+                        <div className="stat-box">
+                            <div className="stat-number">1.5L+</div>
+                            <div className="stat-label">App Installs</div>
+                        </div>
+                    </div>
+                    <h4 className="details-section-title">Engagement Model</h4>
+                    <p className="details-section-text">Content Engine — Full-service retainer, embedded team, ongoing production</p>
+                </div>
+            </div>
+        </div>
+
+        <div className="fs-card">
+            <video className="fs-card-bg" src="./assets/Contraband.MP4" autoPlay loop muted playsInline></video>
+            <div className="fs-card-content">
+                <h2 className="fs-card-title">CONTRABAND</h2>
+                <p className="fs-card-sub">How a stain launched a luxury fragrance to 88 million people</p>
+                <p className="fs-card-text">88M views &middot; 2 weeks &middot; No celebrity</p>
+                <div className="fs-card-tags">
+                    <span className="fs-tag">Campaign</span>
+                    <span className="fs-tag">Film Production</span>
+                    <span className="fs-tag">Luxury</span>
+                </div>
+            </div>
+            <div className="scroll-down-indicator"><a href="#" onClick={(e) => toggleDropdown('details-2', e)} className="toggle-details" data-target="details-2"
+                    style={{'color': 'white', 'textDecoration': 'none'}}><span>Details</span></a> <span
+                    className="arrow">&darr;</span></div>
+        </div>
+
+        <div id="details-2" className={`card-details-dropdown ${activeDropdown === 'details-2' ? 'open' : ''}`}>
+            <div className="card-details-container">
+                <div className="details-left-side">
+                    <h4 className="details-section-title">The Insight</h4>
+                    <p className="details-section-text">Finance content doesn't have to be boring. Everyone was educating. Nobody was entertaining. The insight: make finance feel like culture, not curriculum.</p>
+                    <h4 className="details-section-title">The Work</h4>
+                    <p className="details-section-text">We built a content engine from scratch. Multi-format, high-frequency, relentlessly consistent. An animal podcast explaining IPOs. Investigative deep-dives. Creator collabs before creators blew up. 6–8 pieces per week, every week, for 18 months.</p>
+                    <a href="/contraband" className="details-btn">View Full Case Study</a>
+                </div>
+                <div className="details-right-side">
+                    <div className="stats-grid">
+                        <div className="stat-box">
+                            <div className="stat-number">124K+</div>
+                            <div className="stat-label">Followers From Zero</div>
+                        </div>
+                        <div className="stat-box">
+                            <div className="stat-number">68%</div>
+                            <div className="stat-label">Lower CPL</div>
+                        </div>
+                        <div className="stat-box">
+                            <div className="stat-number">1M+</div>
+                            <div className="stat-label">Views Twice Monthly</div>
+                        </div>
+                        <div className="stat-box">
+                            <div className="stat-number">1.5L+</div>
+                            <div className="stat-label">App Installs</div>
+                        </div>
+                    </div>
+                    <h4 className="details-section-title">Engagement Model</h4>
+                    <p className="details-section-text">Content Engine — Full-service retainer, embedded team, ongoing production</p>
+                </div>
+            </div>
+        </div>
+
+        <div className="fs-card">
+            <video className="fs-card-bg" src="./assets/aava.mp4" autoPlay loop muted playsInline></video>
+            <div className="fs-card-content">
+                <h2 className="fs-card-title">AAVA</h2>
+                <p className="fs-card-sub">How two words made a 20-year-old water brand uncopyable</p>
+                <p className="fs-card-text">6.5M views &middot; Born Alkaline</p>
+                <div className="fs-card-tags">
+                    <span className="fs-tag">Brand Strategy</span>
+                    <span className="fs-tag">Campaign</span>
+                    <span className="fs-tag">FMGC</span>
+                </div>
+            </div>
+            <div className="scroll-down-indicator"><a href="#" onClick={(e) => toggleDropdown('details-3', e)} className="toggle-details" data-target="details-3"
+                    style={{'color': 'white', 'textDecoration': 'none'}}><span>Details</span></a> <span
+                    className="arrow">&darr;</span></div>
+        </div>
+
+        <div id="details-3" className={`card-details-dropdown ${activeDropdown === 'details-3' ? 'open' : ''}`}>
+            <div className="card-details-container">
+                <div className="details-left-side">
+                    <h4 className="details-section-title">The Insight</h4>
+                    <p className="details-section-text">Finance content doesn't have to be boring. Everyone was educating. Nobody was entertaining. The insight: make finance feel like culture, not curriculum.</p>
+                    <h4 className="details-section-title">The Work</h4>
+                    <p className="details-section-text">We built a content engine from scratch. Multi-format, high-frequency, relentlessly consistent. An animal podcast explaining IPOs. Investigative deep-dives. Creator collabs before creators blew up. 6–8 pieces per week, every week, for 18 months.</p>
+                    <a href="/aava" className="details-btn">View Full Case Study</a>
+                </div>
+                <div className="details-right-side">
+                    <div className="stats-grid">
+                        <div className="stat-box">
+                            <div className="stat-number">124K+</div>
+                            <div className="stat-label">Followers From Zero</div>
+                        </div>
+                        <div className="stat-box">
+                            <div className="stat-number">68%</div>
+                            <div className="stat-label">Lower CPL</div>
+                        </div>
+                        <div className="stat-box">
+                            <div className="stat-number">1M+</div>
+                            <div className="stat-label">Views Twice Monthly</div>
+                        </div>
+                        <div className="stat-box">
+                            <div className="stat-number">1.5L+</div>
+                            <div className="stat-label">App Installs</div>
+                        </div>
+                    </div>
+                    <h4 className="details-section-title">Engagement Model</h4>
+                    <p className="details-section-text">Content Engine — Full-service retainer, embedded team, ongoing production</p>
+                </div>
+            </div>
+        </div>
+
+        <div className="fs-card">
+            <video className="fs-card-bg" src="./assets/hamleys.mp4" autoPlay loop muted playsInline></video>
+            <div className="fs-card-content">
+                <h2 className="fs-card-title">HAMLEYS</h2>
+                <p className="fs-card-sub">How a 250-year-old toy store helped Gen Z defuse a time bomb on Valentine's Day
+                </p>
+                <p className="fs-card-text">2.5M organic views</p>
+                <div className="fs-card-tags">
+                    <span className="fs-tag">Campaign Strategy</span>
+                    <span className="fs-tag">On-Ground Activation</span>
+                    <span className="fs-tag">Retail</span>
+                </div>
+            </div>
+            <div className="scroll-down-indicator"><a href="#" onClick={(e) => toggleDropdown('details-4', e)} className="toggle-details" data-target="details-4"
+                    style={{'color': 'white', 'textDecoration': 'none'}}><span>Details</span></a> <span
+                    className="arrow">&darr;</span></div>
+        </div>
+
+        <div id="details-4" className={`card-details-dropdown ${activeDropdown === 'details-4' ? 'open' : ''}`}>
+            <div className="card-details-container">
+                <div className="details-left-side">
+                    <h4 className="details-section-title">The Insight</h4>
+                    <p className="details-section-text">Finance content doesn't have to be boring. Everyone was educating. Nobody was entertaining. The insight: make finance feel like culture, not curriculum.</p>
+                    <h4 className="details-section-title">The Work</h4>
+                    <p className="details-section-text">We built a content engine from scratch. Multi-format, high-frequency, relentlessly consistent. An animal podcast explaining IPOs. Investigative deep-dives. Creator collabs before creators blew up. 6–8 pieces per week, every week, for 18 months.</p>
+                    <a href="/hamleys" className="details-btn">View Full Case Study</a>
+                </div>
+                <div className="details-right-side">
+                    <div className="stats-grid">
+                        <div className="stat-box">
+                            <div className="stat-number">124K+</div>
+                            <div className="stat-label">Followers From Zero</div>
+                        </div>
+                        <div className="stat-box">
+                            <div className="stat-number">68%</div>
+                            <div className="stat-label">Lower CPL</div>
+                        </div>
+                        <div className="stat-box">
+                            <div className="stat-number">1M+</div>
+                            <div className="stat-label">Views Twice Monthly</div>
+                        </div>
+                        <div className="stat-box">
+                            <div className="stat-number">1.5L+</div>
+                            <div className="stat-label">App Installs</div>
+                        </div>
+                    </div>
+                    <h4 className="details-section-title">Engagement Model</h4>
+                    <p className="details-section-text">Content Engine — Full-service retainer, embedded team, ongoing production</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {/*  Services Marquee  */}
+    <section className="marquee-section" id="home">
+        <div className="marquee-content">
+            <span>
+                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Content Strategy
+                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Creative Direction
+                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Video Production
+                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Social Media
+                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Campaign Development
+                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Brand Strategy
+                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> AI Filmmaking
+            </span>
+            <span>
+                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Content Strategy
+                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Creative Direction
+                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Video Production
+                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Social Media
+                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Campaign Development
+                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Brand Strategy
+                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> AI Filmmaking
+            </span>
+        </div>
+    </section>
+
+    {/*  Statement  */}
+    <section className="statement-section" id="statement">
+        <div className="container">
+            <span className="statement-label">How We Work</span>
+            <h2>EARN ATTENTION WITH COMPOUND INTEREST.</h2>
+            <p>Most content fails because nobody thought about it. We figure out what your brand should say<br />the
+                insight that makes you uncopyable — then build the system to say it.</p>
+        </div>
+    </section>
+
+    {/*  Pricing  */}
+    <section className="pricing-section" id="pricing">
+        <div className="container pricing-grid">
+            <div className="pricing-card">
+                <h3>CONTENT<br />ENGINE</h3>
+                <h4>Think. Make. Run. All of it.</h4>
+                <p className="desc">Full-service creative partnership. We develop your content strategy, embed a dedicated
+                    team, and run your content operation. You get an in-house creative department without building one.
+                </p>
+                <ul className="features">
+                    <li>Dedicated team & strategy</li>
+                    <li>Ongoing production</li>
+                    <li>Performance optimisation</li>
+                </ul>
+                <div className="price-box">
+                    <span className="label">Starting at</span>
+                    <span className="price">₹4L<span>/month</span></span>
+                </div>
+            </div>
+            <div className="pricing-card">
+                <h3>CREATIVE<br />STRATEGY</h3>
+                <h4>We Think. You make. We guide</h4>
+                <p className="desc">Strategic direction without full execution. We develop your content strategy, create
+                    concepts and scripts, and provide creative oversight—you or your team handles production. Get our
+                    thinking without our production costs.</p>
+                <ul className="features">
+                    <li>Content strategy & concept</li>
+                    <li>Scripts & briefs</li>
+                    <li>Ongoing strategic counsel</li>
+                </ul>
+                <div className="price-box">
+                    <span className="label">Starting at</span>
+                    <span className="price">₹1.5L<span>/month</span></span>
+                </div>
+            </div>
+            <div className="pricing-card highlight-card">
+                <h3>CAMPAIGN /<br />PROJECT</h3>
+                <h4>Think. Make. Ship.</h4>
+                <p className="desc">One-off creative work. Campaign concepts, brand films, launch content,
+                    repositioning—defined scope, clear deliverables, fixed timeline. When you need something specific
+                    done well.</p>
+                <ul className="features">
+                    <li>Defined scope & timeline</li>
+                    <li>Creative development</li>
+                    <li>Full production</li>
+                </ul>
+                <div className="price-box">
+                    <span className="label">Starting at</span>
+                    <span className="price">₹5L<span>/month</span></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {/*  About  */}
+    <section className="about-section" id="about">
+        <div className="container">
+            <div className="about-header">
+                <img src="./assets/coconut.png" alt="Coconut" className="about-coconut-img" />
+                <h2 className="name-title">MACHINGA</h2>
+                <p className="pronunciation">/MUH - CHIN - GAH/</p>
+            </div>
+            <div className="about-text-grid">
+                <p className="definition">A palm-sized coconut fruit used to make innovative handmade toys for kids of all
+                    ages. Crudely translated from Malayalam.</p>
+                <p className="explanation">We liked the word. It's playful. It's crafted. It's distinctly Indian. It makes
+                    people ask. "What does that mean?" And then we get to tell them.</p>
+            </div>
+        </div>
+    </section>
+
+    {/*  Beliefs  */}
+    <section className="beliefs-section">
+        <div className="container">
+            <span className="statement-label">What We Believe</span>
+            <h3 className="beliefs-heading">Things we believe to be true.</h3>
+
+            <div className="beliefs-scroll-layout" style={{'display': 'flex', 'position': 'relative'}}>
+                {/*  Left Sticky Column  */}
+                <div className="beliefs-left"
+                    style={{'width': '350px', 'position': 'sticky', 'top': '50vh', 'height': '60px', 'transform': 'translateY(-50%)', 'display': 'flex', 'alignItems': 'flex-start', 'gap': '12px', 'overflow': 'hidden', 'fontSize': '40px', 'fontWeight': '800', 'color': '#999999', 'textTransform': 'uppercase'}}>
+                    <span style={{'height': '60px', 'lineHeight': '60px'}}>ON</span>
+                    <div id="dynamic-belief-words"
+                        style={{'display': 'flex', 'flexDirection': 'column', 'transition': 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)', 'marginTop': '0'}}>
+                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Strategy</span>
+                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Content</span>
+                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Briefs</span>
+                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Creative</span>
+                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Attention</span>
+                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Reality</span>
+                    </div>
+                </div>
+
+                {/*  Right Scrolling Column  */}
+                <div className="beliefs-right" style={{'flex': '1'}}>
+                    <div className="belief-scroll-item" data-index="0" data-tag="On Strategy"
+                        style={{'padding': '15vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Strategy
+                            isn't a phase you rush through.</h4>
+                        <p style={{'fontSize': '14px', 'color': '#888888'}}>It's the reason everything else works.</p>
+                    </div>
+                    <div className="belief-scroll-item" data-index="1" data-tag="On Content"
+                        style={{'padding': '15vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Content
+                            should be an engine, not a slot machine.</h4>
+                        <p style={{'fontSize': '14px', 'color': '#888888'}}>Systems beat one-offs. Every time.</p>
+                    </div>
+                    <div className="belief-scroll-item" data-index="2" data-tag="On Briefs"
+                        style={{'padding': '15vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>The brief is
+                            rarely about what the brief says it's about.</h4>
+                        <p style={{'fontSize': '14px', 'color': '#888888'}}>Dig until you hit the real question.</p>
+                    </div>
+                    <div className="belief-scroll-item" data-index="3" data-tag="On Creative"
+                        style={{'padding': '15vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>The best
+                            creative comes from understanding, not guessing.</h4>
+                        <p style={{'fontSize': '14px', 'color': '#888888'}}>Do the homework. Then do the fun part.</p>
+                    </div>
+                    <div className="belief-scroll-item" data-index="4" data-tag="On Attention"
+                        style={{'padding': '15vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Compound
+                            interest works for attention too.</h4>
+                        <p style={{'fontSize': '14px', 'color': '#888888'}}>Show up consistently, or don't bother showing up.
+                        </p>
+                    </div>
+                    <div className="belief-scroll-item" data-index="5" data-tag="On Reality"
+                        style={{'padding': '15vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Virality
+                            isn't luck.</h4>
+                        <p style={{'fontSize': '14px', 'color': '#888888'}}>It's research dressed up as spontaneity.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    {/*  Contact  */}
+    <section className="contact-section" id="contact">
+        <div className="container">
+            <div className="contact-card">
+                <div className="contact-info-side">
+                    <h2 className="huge-text">LET'S MAKE<br />SOMETHING</h2>
+                    <p className="prompt-text">Got a challenge? A budget? A vague idea you want to explore? We're in.</p>
+                    <a href="mailto:anand@studiomachinga.com" className="email-link">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0FC823" strokeWidth="2"
+                            strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        anand@studiomachinga.com
+                    </a>
+                </div>
+                <div className="contact-form-side">
+                    <form className="contact-form" id="contact-us-form">
+                        <input type="text" placeholder="Name" required />
+                        <input type="email" placeholder="Email" required />
+                        <input type="text" placeholder="What are you looking for" required />
+                        <textarea placeholder="Tell us more" rows={4} required></textarea>
+                        <button type="submit" className="btn-gradient">Send It</button>
+                    </form>
+                    <div id="contact-success-message" className="success-message" style={{'display': 'none'}}>
+                        <h3>Thank you!</h3>
+                        <p>Your message has been received. We'll be in touch soon.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    </main>
+  );
+}

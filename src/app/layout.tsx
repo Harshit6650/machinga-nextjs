@@ -1,0 +1,65 @@
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "800"],
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  title: "Machinga | We exist to make the best work in the world",
+  description: "Think clearly. Make decisively. Run smart. Machinga helps you move from scattered idea to running system. We are a creative digital agency building engaging content and campaigns.",
+  keywords: ["Digital Agency", "Creative Agency", "Content Strategy", "Campaigns", "Machinga", "Marketing", "Brand Strategy"],
+  openGraph: {
+    title: "Machinga | We exist to make the best work in the world",
+    description: "Think clearly. Make decisively. Run smart. Machinga helps you move from scattered idea to running system.",
+    url: "https://studiomachinga.com/",
+    siteName: "Machinga",
+    images: [
+      {
+        url: "https://studiomachinga.com/assets/machinga_logos.png",
+        width: 1200,
+        height: 630,
+        alt: "Machinga Logo",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Machinga | We exist to make the best work in the world",
+    description: "Think clearly. Make decisively. Run smart. Machinga helps you move from scattered idea to running system.",
+    images: ["https://studiomachinga.com/assets/machinga_logos.png"],
+  },
+  alternates: {
+    canonical: "https://studiomachinga.com/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" className={`${inter.className} scroll-smooth`}>
+      <head>
+        <link rel="icon" type="image/png" href="/assets/machinga_logos.png" />
+      </head>
+      <body>
+        <Header />
+        {children}
+        <Footer />
+      </body>
+    </html>
+  );
+}
