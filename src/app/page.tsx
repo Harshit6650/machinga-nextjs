@@ -86,18 +86,6 @@ export default function Home() {
 
     </section>
 
-    {/*  Intro Statement Section  */}
-    <section className="intro-statement-section" id="strategic-brain">
-        <div className="container intro-container">
-            <h2 className="intro-text">Need a full content team? We'll embed with you. Already have production capacity?
-                We'll provide the strategic brain. Either way, the thinking comes first.</h2>
-            <a href="#work" className="btn-gradient-circles">
-                <span className="btn-circle btn-circle-left"></span>
-                <span className="btn-text">See Our Work</span>
-                <span className="btn-circle btn-circle-right"></span>
-            </a>
-        </div>
-    </section>
 
     {/*  Work Section  */}
     <section className="fs-cards-section" id="work">
