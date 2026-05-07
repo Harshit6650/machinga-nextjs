@@ -18,8 +18,8 @@ export default function Footer() {
         <div className="footer-brand">
           <div className="brand-top">
             <Link href="/">
-              <Image 
-                src="/assets/Machinga logo with text.png" 
+              <img 
+                src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Machinga logo with text.png`} 
                 alt="Machinga" 
                 width={150} 
                 height={40} 

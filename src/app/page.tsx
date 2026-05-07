@@ -39,24 +39,7 @@ export default function Home() {
             autoPlay loop muted playsInline disablePictureInPicture></video>
     </div>
 
-    {/*  Header/Nav  */}
-    <header className="site-header">
-        <a href="#" className="logo">
-            <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Machinga logo with text.png`} alt="Machinga" className="header-logo-img" />
-        </a>
-        <button className="menu-toggle" aria-label="Toggle Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <nav className="desktop-nav">
-            <a href="#">Home</a>
-            <a href="#work">Work</a>
-            <a href="#statement">How we work</a>
-            <a href="#about">About</a>
-            <a href="#contact" className="nav-contact">Contact Us</a>
-        </nav>
-    </header>
+
 
     {/*  ═══════════════════════════════════════
          CANVAS SCROLL SECTION
