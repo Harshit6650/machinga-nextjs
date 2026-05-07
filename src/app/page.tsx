@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import HomeClientLogic from '@/components/HomeClientLogic';
 
 export default function Home() {
@@ -17,10 +18,16 @@ export default function Home() {
       }, 100);
     }
   };
+  const pathname = usePathname();
 
   useEffect(() => {
-    // Logic is in HomeClientLogic
-  }, []);
+    // Force all videos to play. Next.js router cache sometimes suspends videos on navigation.
+    const videos = document.querySelectorAll('video');
+    videos.forEach((vid) => {
+      // Re-trigger play safely
+      vid.play().catch(err => console.log('Autoplay prevented:', err));
+    });
+  }, [pathname]);
 
   return (
     <main>
@@ -28,14 +35,14 @@ export default function Home() {
       <HomeClientLogic />
 
       <div id="loader-screen" className="loader-screen">
-        <video className="loader-video" src="./assets/PencilBomb_GreenPulse_Loop_Landscape_TrueWhite_4K.mp4" preload="auto"
+        <video className="loader-video" src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/PencilBomb_GreenPulse_Loop_Landscape_TrueWhite_4K.mp4`} preload="auto"
             autoPlay loop muted playsInline disablePictureInPicture></video>
     </div>
 
     {/*  Header/Nav  */}
     <header className="site-header">
         <a href="#" className="logo">
-            <img src="./assets/Machinga logo with text.png" alt="Machinga" className="header-logo-img" />
+            <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Machinga logo with text.png`} alt="Machinga" className="header-logo-img" />
         </a>
         <button className="menu-toggle" aria-label="Toggle Menu">
             <span></span>
@@ -112,7 +119,7 @@ export default function Home() {
     {/*  Work Section  */}
     <section className="fs-cards-section" id="work">
         <div className="fs-card">
-            <video className="fs-card-bg" src="./assets/Appreciate.MP4" autoPlay loop muted playsInline></video>
+            <video className="fs-card-bg" src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Appreciate.MP4`} autoPlay loop muted playsInline></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">APPRECIATE</h2>
                 <p className="fs-card-sub">How a fintech compounds interest</p>
@@ -135,7 +142,7 @@ export default function Home() {
                     <p className="details-section-text">Finance content doesn't have to be boring. Everyone was educating. Nobody was entertaining. The insight: make finance feel like culture, not curriculum.</p>
                     <h4 className="details-section-title">The Work</h4>
                     <p className="details-section-text">We built a content engine from scratch. Multi-format, high-frequency, relentlessly consistent. An animal podcast explaining IPOs. Investigative deep-dives. Creator collabs before creators blew up. 6–8 pieces per week, every week, for 18 months.</p>
-                    <a href="/appreciate" className="details-btn">View Full Case Study</a>
+                    <Link href="/appreciate" className="details-btn">View Full Case Study</Link>
                 </div>
                 <div className="details-right-side">
                     <div className="stats-grid">
@@ -163,7 +170,7 @@ export default function Home() {
         </div>
 
         <div className="fs-card">
-            <video className="fs-card-bg" src="./assets/Contraband.MP4" autoPlay loop muted playsInline></video>
+            <video className="fs-card-bg" src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Contraband.MP4`} autoPlay loop muted playsInline></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">CONTRABAND</h2>
                 <p className="fs-card-sub">How a stain launched a luxury fragrance to 88 million people</p>
@@ -183,38 +190,30 @@ export default function Home() {
             <div className="card-details-container">
                 <div className="details-left-side">
                     <h4 className="details-section-title">The Insight</h4>
-                    <p className="details-section-text">Finance content doesn't have to be boring. Everyone was educating. Nobody was entertaining. The insight: make finance feel like culture, not curriculum.</p>
+                    <p className="details-section-text">You can&apos;t show a smell through a screen. So don&apos;t show the evening show what it left behind. A stain is sillage made visible. Each ruined object is a fragrance note. The mess is the recipe.</p>
                     <h4 className="details-section-title">The Work</h4>
-                    <p className="details-section-text">We built a content engine from scratch. Multi-format, high-frequency, relentlessly consistent. An animal podcast explaining IPOs. Investigative deep-dives. Creator collabs before creators blew up. 6–8 pieces per week, every week, for 18 months.</p>
-                    <a href="/contraband" className="details-btn">View Full Case Study</a>
+                    <p className="details-section-text">Two films. Let It Stain: stained white bedsheets, five stacked curiosity loops, product at 17 seconds. &quot;LET IT STAIN&quot; description, emotional territory, and philosophy in three words. The snackable cut: a luxury bottle dropped into a teapot. Five seconds. 26.4M views on its own.</p>
+                    <Link href="/contraband" className="details-btn">View Full Case Study</Link>
                 </div>
                 <div className="details-right-side">
-                    <div className="stats-grid">
+                    <div className="stats-grid" style={{ gridTemplateColumns: '1fr 1fr' }}>
                         <div className="stat-box">
-                            <div className="stat-number">124K+</div>
-                            <div className="stat-label">Followers From Zero</div>
+                            <div className="stat-number">88M+</div>
+                            <div className="stat-label">Combined views</div>
                         </div>
                         <div className="stat-box">
-                            <div className="stat-number">68%</div>
-                            <div className="stat-label">Lower CPL</div>
-                        </div>
-                        <div className="stat-box">
-                            <div className="stat-number">1M+</div>
-                            <div className="stat-label">Views Twice Monthly</div>
-                        </div>
-                        <div className="stat-box">
-                            <div className="stat-number">1.5L+</div>
-                            <div className="stat-label">App Installs</div>
+                            <div className="stat-number">1.1M</div>
+                            <div className="stat-label">Likes on hero film</div>
                         </div>
                     </div>
                     <h4 className="details-section-title">Engagement Model</h4>
-                    <p className="details-section-text">Content Engine — Full-service retainer, embedded team, ongoing production</p>
+                    <p className="details-section-text">Campaign Concept, Script, Production</p>
                 </div>
             </div>
         </div>
 
         <div className="fs-card">
-            <video className="fs-card-bg" src="./assets/aava.mp4" autoPlay loop muted playsInline></video>
+            <video className="fs-card-bg" src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/aava.mp4`} autoPlay loop muted playsInline></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">AAVA</h2>
                 <p className="fs-card-sub">How two words made a 20-year-old water brand uncopyable</p>
@@ -234,38 +233,30 @@ export default function Home() {
             <div className="card-details-container">
                 <div className="details-left-side">
                     <h4 className="details-section-title">The Insight</h4>
-                    <p className="details-section-text">Finance content doesn't have to be boring. Everyone was educating. Nobody was entertaining. The insight: make finance feel like culture, not curriculum.</p>
+                    <p className="details-section-text">Every brand claimed &quot;alkaline&quot; — including those stripping water with RO and re ionising it. The word was diluted into meaninglessness. Aava&apos;s water has been naturally alkaline for 20 years. The goal: a line that&apos;s not just true, but structurally uncopyable.</p>
                     <h4 className="details-section-title">The Work</h4>
-                    <p className="details-section-text">We built a content engine from scratch. Multi-format, high-frequency, relentlessly consistent. An animal podcast explaining IPOs. Investigative deep-dives. Creator collabs before creators blew up. 6–8 pieces per week, every week, for 18 months.</p>
-                    <a href="/aava" className="details-btn">View Full Case Study</a>
+                    <p className="details-section-text">Three films, three registers. An earnest brand launch with deliberate understatement. A deadpan anti-ad where every RTB lands as a negative that&apos;s actually a positive. A viral comedy where a fake brand called Generic enacts exactly what competitors do — nothing exaggerated. Reposted by Zepto and Instamart.</p>
+                    <Link href="/aava" className="details-btn">View Full Case Study</Link>
                 </div>
                 <div className="details-right-side">
-                    <div className="stats-grid">
+                    <div className="stats-grid" style={{ gridTemplateColumns: '1fr 1fr' }}>
                         <div className="stat-box">
-                            <div className="stat-number">124K+</div>
-                            <div className="stat-label">Followers From Zero</div>
+                            <div className="stat-number">6.5M</div>
+                            <div className="stat-label">Views across films</div>
                         </div>
                         <div className="stat-box">
-                            <div className="stat-number">68%</div>
-                            <div className="stat-label">Lower CPL</div>
-                        </div>
-                        <div className="stat-box">
-                            <div className="stat-number">1M+</div>
-                            <div className="stat-label">Views Twice Monthly</div>
-                        </div>
-                        <div className="stat-box">
-                            <div className="stat-number">1.5L+</div>
-                            <div className="stat-label">App Installs</div>
+                            <div className="stat-number">0</div>
+                            <div className="stat-label">Competitors copied the line</div>
                         </div>
                     </div>
                     <h4 className="details-section-title">Engagement Model</h4>
-                    <p className="details-section-text">Content Engine — Full-service retainer, embedded team, ongoing production</p>
+                    <p className="details-section-text">Brand Strategy, Positioning, Campaign Concept, Film Production</p>
                 </div>
             </div>
         </div>
 
         <div className="fs-card">
-            <video className="fs-card-bg" src="./assets/hamleys.mp4" autoPlay loop muted playsInline></video>
+            <video className="fs-card-bg" src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/hamleys.mp4`} autoPlay loop muted playsInline></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">HAMLEYS</h2>
                 <p className="fs-card-sub">How a 250-year-old toy store helped Gen Z defuse a time bomb on Valentine's Day
@@ -286,32 +277,24 @@ export default function Home() {
             <div className="card-details-container">
                 <div className="details-left-side">
                     <h4 className="details-section-title">The Insight</h4>
-                    <p className="details-section-text">Finance content doesn't have to be boring. Everyone was educating. Nobody was entertaining. The insight: make finance feel like culture, not curriculum.</p>
+                    <p className="details-section-text">Valentine&apos;s Day is an anxiety event for Gen Z — every gift makes a statement you didn&apos;t intend. The Plush Bear is the only gift where the receiver supplies the meaning. It lets you say everything and nothing. Skip the awkward.</p>
                     <h4 className="details-section-title">The Work</h4>
-                    <p className="details-section-text">We built a content engine from scratch. Multi-format, high-frequency, relentlessly consistent. An animal podcast explaining IPOs. Investigative deep-dives. Creator collabs before creators blew up. 6–8 pieces per week, every week, for 18 months.</p>
-                    <a href="/hamleys" className="details-btn">View Full Case Study</a>
+                    <p className="details-section-text">Social content naming Gen Z relationship anxiety — deadpan, accurate, unfiltered. Visual identity: black, white, red while everyone else screamed pink. On-ground: a life-sized bear in mall atriums Feb 12–14, hugs with no labels required.</p>
+                    <Link href="/hamleys" className="details-btn">View Full Case Study</Link>
                 </div>
                 <div className="details-right-side">
-                    <div className="stats-grid">
+                    <div className="stats-grid" style={{ gridTemplateColumns: '1fr 1fr' }}>
                         <div className="stat-box">
-                            <div className="stat-number">124K+</div>
-                            <div className="stat-label">Followers From Zero</div>
+                            <div className="stat-number">5M+</div>
+                            <div className="stat-label">Organic views in 1 week</div>
                         </div>
                         <div className="stat-box">
-                            <div className="stat-number">68%</div>
-                            <div className="stat-label">Lower CPL</div>
-                        </div>
-                        <div className="stat-box">
-                            <div className="stat-number">1M+</div>
-                            <div className="stat-label">Views Twice Monthly</div>
-                        </div>
-                        <div className="stat-box">
-                            <div className="stat-number">1.5L+</div>
-                            <div className="stat-label">App Installs</div>
+                            <div className="stat-number">Year 2</div>
+                            <div className="stat-label">Campaign recommissioned</div>
                         </div>
                     </div>
                     <h4 className="details-section-title">Engagement Model</h4>
-                    <p className="details-section-text">Content Engine — Full-service retainer, embedded team, ongoing production</p>
+                    <p className="details-section-text">Campaign Strategy, Creative Ideation, Content Production, On-Ground Activation</p>
                 </div>
             </div>
         </div>
@@ -321,22 +304,22 @@ export default function Home() {
     <section className="marquee-section" id="home">
         <div className="marquee-content">
             <span>
-                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Content Strategy
-                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Creative Direction
-                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Video Production
-                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Social Media
-                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Campaign Development
-                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Brand Strategy
-                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> AI Filmmaking
+                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Content Strategy
+                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Creative Direction
+                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Video Production
+                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Social Media
+                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Campaign Development
+                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Brand Strategy
+                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> AI Filmmaking
             </span>
             <span>
-                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Content Strategy
-                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Creative Direction
-                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Video Production
-                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Social Media
-                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Campaign Development
-                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> Brand Strategy
-                <img src="./assets/machinga_logos.png" alt="logo" className="marquee-logo" /> AI Filmmaking
+                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Content Strategy
+                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Creative Direction
+                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Video Production
+                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Social Media
+                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Campaign Development
+                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> Brand Strategy
+                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} alt="logo" className="marquee-logo" /> AI Filmmaking
             </span>
         </div>
     </section>
@@ -409,7 +392,7 @@ export default function Home() {
     <section className="about-section" id="about">
         <div className="container">
             <div className="about-header">
-                <img src="./assets/coconut.png" alt="Coconut" className="about-coconut-img" />
+                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/coconut.png`} alt="Coconut" className="about-coconut-img" />
                 <h2 className="name-title">MACHINGA</h2>
                 <p className="pronunciation">/MUH - CHIN - GAH/</p>
             </div>

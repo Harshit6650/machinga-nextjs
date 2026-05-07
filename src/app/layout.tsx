@@ -51,9 +51,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.className} scroll-smooth`}>
+    <html lang="en" className={inter.className}>
       <head>
-        <link rel="icon" type="image/png" href="/assets/machinga_logos.png" />
+        <link rel="icon" type="image/png" href={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} />
       </head>
       <body>
         <Header />

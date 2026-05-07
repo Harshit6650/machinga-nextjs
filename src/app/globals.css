@@ -19,8 +19,6 @@
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-
 body {
     font-family: 'Inter', 'Helvetica Neue', sans-serif;
     background-color: var(--bg-main);

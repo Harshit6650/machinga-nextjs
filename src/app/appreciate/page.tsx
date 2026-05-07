@@ -1,4 +1,5 @@
 import Carousel from '@/components/Carousel';
+import Link from 'next/link';
 
 
 export const metadata = {
@@ -35,7 +36,7 @@ export default function AppreciatePage() {
             </div>
 
             <div className="cs-hero-image">
-                <img src="/assets/Appreciate case studies assets/Appreciate_hero.gif"
+                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Appreciate case studies assets/Appreciate_hero.gif`}
                     alt="A Fintech With Knack Hero Image"
                     style={{width: "100%", borderRadius: "12px", maxWidth: "800px", display: "block", margin: "0 auto"}} />
             </div>
@@ -52,7 +53,7 @@ export default function AppreciatePage() {
             </div>
 
             <div className="cs-image-center">
-                <img src="/assets/Appreciate case studies assets/instagram_image.jpg" alt="App Mockup Challenge"
+                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Appreciate case studies assets/instagram_image.jpg`} alt="App Mockup Challenge"
                     style={{maxWidth: "300px", borderRadius: "20px", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}} />
             </div>
 
@@ -106,7 +107,7 @@ export default function AppreciatePage() {
         <div className="cs-container">
             <div className="cs-dark-grid">
                 <div>
-                    <video src="/assets/Appreciate case studies assets/Sab_karte_hai_GlobalInvesting_AppreciateGlobal_Investing_Podcast_episode_3Disclaimer-_Inves.mp4" autoPlay loop muted playsInline style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 20px 40px rgba(0,0,0,0.5)"}}></video>
+                    <video src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Appreciate case studies assets/Sab_karte_hai_GlobalInvesting_AppreciateGlobal_Investing_Podcast_episode_3Disclaimer-_Inves.mp4`} autoPlay loop muted playsInline style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 20px 40px rgba(0,0,0,0.5)"}}></video>
                 </div>
                 <div>
                     <span className="cs-section-label" style={{color: "#888"}}>04 — The Virality Lab</span>
@@ -128,19 +129,19 @@ export default function AppreciatePage() {
 
             <div className="cs-four-screens">
                 <video
-                    src="/assets/Appreciate case studies assets/Global_Investing_Podcast_-_Episode_2_What_is_फ़क_यू_Money_Artwork_by_aviditstudiosLike_-_Commen.mp4"
+                    src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Appreciate case studies assets/Global_Investing_Podcast_-_Episode_2_What_is_फ़क_यू_Money_Artwork_by_aviditstudiosLike_-_Commen.mp4`}
                     autoPlay loop muted playsInline
                     style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}}></video>
                 <video
-                    src="/assets/Appreciate case studies assets/Once_upon_a_time_there_was_a_kingfisher_bird...Welcome_to_Appreciate_Podcast_EP05Note-_All_char.mp4"
+                    src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Appreciate case studies assets/Once_upon_a_time_there_was_a_kingfisher_bird...Welcome_to_Appreciate_Podcast_EP05Note-_All_char.mp4`}
                     autoPlay loop muted playsInline
                     style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}}></video>
                 <video
-                    src="/assets/Appreciate case studies assets/Par_woh_Tusla_ka_market_shareWith_aviditstudiospodcasts_stockmarket_ev_uscompanies_usstock.mp4"
+                    src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Appreciate case studies assets/Par_woh_Tusla_ka_market_shareWith_aviditstudiospodcasts_stockmarket_ev_uscompanies_usstock.mp4`}
                     autoPlay loop muted playsInline
                     style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}}></video>
                 <video
-                    src="/assets/Appreciate case studies assets/What_is_F.I.R.E_Appreciate_Podcast_EP04_-_Deploying_Inherited_Capital_for_Global_Investing_ap.mp4"
+                    src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Appreciate case studies assets/What_is_F.I.R.E_Appreciate_Podcast_EP04_-_Deploying_Inherited_Capital_for_Global_Investing_ap.mp4`}
                     autoPlay loop muted playsInline
                     style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}}></video>
             </div>
@@ -152,7 +153,7 @@ export default function AppreciatePage() {
         <div className="cs-container">
             <div className="cs-split-grid reverse">
                 <div className="cs-split-image">
-                    <video src="/assets/Appreciate case studies assets/Apun_hi_Shareholder._Apun_hi_Owner...Disclaimer-_Investments_in_securities_markets_are_subject_t.mp4" autoPlay loop muted playsInline
+                    <video src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Appreciate case studies assets/Apun_hi_Shareholder._Apun_hi_Owner...Disclaimer-_Investments_in_securities_markets_are_subject_t.mp4`} autoPlay loop muted playsInline
                         style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", objectFit: "cover"}}></video>
                 </div>
                 <div style={{paddingRight: "3rem"}}>
@@ -175,15 +176,15 @@ export default function AppreciatePage() {
 
             <div className="cs-three-screens">
                 <video
-                    src="/assets/Appreciate case studies assets/American_Keeda_hai_toh_hai_Appreciate_investing_stocks_stockmarket.mp4"
+                    src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Appreciate case studies assets/American_Keeda_hai_toh_hai_Appreciate_investing_stocks_stockmarket.mp4`}
                     autoPlay loop muted playsInline
                     style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}}></video>
                 <video
-                    src="/assets/Appreciate case studies assets/Apun_hi_Shareholder._Apun_hi_Owner...Disclaimer-_Investments_in_securities_markets_are_subject_t.mp4"
+                    src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Appreciate case studies assets/Apun_hi_Shareholder._Apun_hi_Owner...Disclaimer-_Investments_in_securities_markets_are_subject_t.mp4`}
                     autoPlay loop muted playsInline
                     style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}}></video>
                 <video
-                    src="/assets/Appreciate case studies assets/Sab_karte_hai_GlobalInvesting_AppreciateGlobal_Investing_Podcast_episode_3Disclaimer-_Inves.mp4"
+                    src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Appreciate case studies assets/Sab_karte_hai_GlobalInvesting_AppreciateGlobal_Investing_Podcast_episode_3Disclaimer-_Inves.mp4`}
                     autoPlay loop muted playsInline
                     style={{width: "100%", border: "4px solid #000000", borderRadius: "36px", boxSizing: "border-box", boxShadow: "0 10px 30px rgba(0,0,0,0.1)"}}></video>
             </div>
@@ -203,7 +204,7 @@ export default function AppreciatePage() {
 
             <div className="cs-split-grid">
                 <div className="cs-split-image">
-                    <video src="/assets/Appreciate case studies assets/export_22.mp4" autoPlay loop muted playsInline
+                    <video src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Appreciate case studies assets/export_22.mp4`} autoPlay loop muted playsInline
                         style={{width: "100%", borderRadius: "16px", objectFit: "cover"}}></video>
                 </div>
                 <div style={{paddingLeft: "3rem"}}>
@@ -280,9 +281,9 @@ export default function AppreciatePage() {
                 <div style={{height: "1px", backgroundColor: "#888", width: "60px"}}></div>
             </div>
             <h2 className="cs-next-title" style={{color: "#1a1a1a", marginBottom: "3rem"}}>Let's make something<br />that <span style={{color: "var(--green)"}}>appreciates.</span></h2>
-            <a href="/#contact" className="btn-gradient" style={{display: "inline-flex", alignItems: "center", justifyContent: "center", textDecoration: "none", padding: "16px 36px", borderRadius: "30px", fontWeight: "600"}}>
+            <Link href="/#contact" className="btn-gradient" style={{display: "inline-flex", alignItems: "center", justifyContent: "center", textDecoration: "none", padding: "16px 36px", borderRadius: "30px", fontWeight: "600"}}>
                 Start A Conversation
-            </a>
+            </Link>
         </div>
     </section>
       <Carousel currentProject="appreciate" />

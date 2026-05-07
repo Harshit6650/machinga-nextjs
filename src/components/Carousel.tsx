@@ -3,11 +3,14 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
+const isProd = process.env.NODE_ENV === 'production';
+const getAssetPath = (path: string) => isProd ? `/machinga-nextjs${path}` : path;
+
 const projects = [
-  { id: 'appreciate', title: 'Appreciate', subtext: 'How a fintech compounds interest', img: '/assets/APPRECIATE1.png' },
-  { id: 'aava', title: 'Aava', subtext: 'How two words made a 20-year-old water brand uncopyable', img: '/assets/AAVA3.png' },
-  { id: 'contraband', title: 'Contraband', subtext: 'How a stain launched a luxury fragrance to 88 million people', img: '/assets/CONTRABAND2.png' },
-  { id: 'hamleys', title: 'Hamleys', subtext: "How a 250-year-old toy store helped Gen Z defuse a time bomb on Valentine's Day", img: '/assets/HAMLEYS4.png' },
+  { id: 'appreciate', title: 'Appreciate', subtext: 'How a fintech compounds interest', img: getAssetPath('/assets/APPRECIATE1.png') },
+  { id: 'aava', title: 'Aava', subtext: 'How two words made a 20-year-old water brand uncopyable', img: getAssetPath('/assets/AAVA3.png') },
+  { id: 'contraband', title: 'Contraband', subtext: 'How a stain launched a luxury fragrance to 88 million people', img: getAssetPath('/assets/CONTRABAND2.png') },
+  { id: 'hamleys', title: 'Hamleys', subtext: "How a 250-year-old toy store helped Gen Z defuse a time bomb on Valentine's Day", img: getAssetPath('/assets/HAMLEYS4.png') },
 ];
 
 export default function Carousel({ currentProject }: { currentProject: string }) {

@@ -94,7 +94,8 @@ function startImagePreload() {
                  onAllLoaded();
             }
         };
-        img.src   = `/assets/${FRAMES_DIR}/${name}.webp`;
+        const basePath = process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : '';
+        img.src   = `${basePath}/assets/${FRAMES_DIR}/${name}.webp`;
         images[i] = img;
     }
 }
