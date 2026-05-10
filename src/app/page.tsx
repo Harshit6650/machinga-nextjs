@@ -11,12 +11,7 @@ export default function Home() {
 
   const toggleDropdown = (id: string, e: React.MouseEvent) => {
     e.preventDefault();
-    setActiveDropdown(activeDropdown === id ? null : id);
-    if (activeDropdown !== id) {
-      setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 100);
-    }
+    setActiveDropdown(prev => prev === id ? null : id);
   };
   const pathname = usePathname();
 
@@ -55,9 +50,6 @@ export default function Home() {
         {/*  Progress rail (right) — dots are clickable  */}
         <div id="progress-rail"></div>
 
-        {/*  Chapter label (bottom-left)  */}
-        <div id="chapter-label"></div>
-
         {/*  Green pulse dots (left — shown during loop/pause)  */}
         <div id="dwell-indicator">
             <div className="dwell-dot"></div>
@@ -76,11 +68,10 @@ export default function Home() {
             </div>
         </div>
 
-        {/*  Transition label (top-right)  */}
-        <div id="transition-label"></div>
-
-        {/*  Global video progress bar (very bottom edge)  */}
-        <div id="progress-bar-wrap">
+        {/*  Tracking elements required for animation script (Hidden)  */}
+        <div id="chapter-label" style={{ display: 'none' }}></div>
+        <div id="transition-label" style={{ display: 'none' }}></div>
+        <div id="progress-bar-wrap" style={{ display: 'none' }}>
             <div id="progress-bar-fill"></div>
         </div>
 
@@ -101,9 +92,27 @@ export default function Home() {
                     <span className="fs-tag">Fintech</span>
                 </div>
             </div>
-            <div className="scroll-down-indicator"><a href="#" onClick={(e) => toggleDropdown('details-1', e)} className="toggle-details" data-target="details-1"
-                    style={{'color': 'white', 'textDecoration': 'none'}}><span>Details</span></a> <span
-                    className="arrow">&darr;</span></div>
+            <div className="scroll-down-indicator">
+                <button 
+                    onClick={(e) => toggleDropdown('details-1', e)} 
+                    className="toggle-details"
+                    style={{
+                        background: 'none',
+                        border: 'none',
+                        padding: 0,
+                        cursor: 'pointer',
+                        color: 'white',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: '4px',
+                        fontFamily: 'inherit'
+                    }}
+                >
+                    <span>Details</span>
+                    <span className="arrow">&darr;</span>
+                </button>
+            </div>
         </div>
 
         <div id="details-1" className={`card-details-dropdown ${activeDropdown === 'details-1' ? 'open' : ''}`}>
@@ -152,9 +161,27 @@ export default function Home() {
                     <span className="fs-tag">Luxury</span>
                 </div>
             </div>
-            <div className="scroll-down-indicator"><a href="#" onClick={(e) => toggleDropdown('details-2', e)} className="toggle-details" data-target="details-2"
-                    style={{'color': 'white', 'textDecoration': 'none'}}><span>Details</span></a> <span
-                    className="arrow">&darr;</span></div>
+            <div className="scroll-down-indicator">
+                <button 
+                    onClick={(e) => toggleDropdown('details-2', e)} 
+                    className="toggle-details"
+                    style={{
+                        background: 'none',
+                        border: 'none',
+                        padding: 0,
+                        cursor: 'pointer',
+                        color: 'white',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: '4px',
+                        fontFamily: 'inherit'
+                    }}
+                >
+                    <span>Details</span>
+                    <span className="arrow">&darr;</span>
+                </button>
+            </div>
         </div>
 
         <div id="details-2" className={`card-details-dropdown ${activeDropdown === 'details-2' ? 'open' : ''}`}>
@@ -195,9 +222,27 @@ export default function Home() {
                     <span className="fs-tag">FMGC</span>
                 </div>
             </div>
-            <div className="scroll-down-indicator"><a href="#" onClick={(e) => toggleDropdown('details-3', e)} className="toggle-details" data-target="details-3"
-                    style={{'color': 'white', 'textDecoration': 'none'}}><span>Details</span></a> <span
-                    className="arrow">&darr;</span></div>
+            <div className="scroll-down-indicator">
+                <button 
+                    onClick={(e) => toggleDropdown('details-3', e)} 
+                    className="toggle-details"
+                    style={{
+                        background: 'none',
+                        border: 'none',
+                        padding: 0,
+                        cursor: 'pointer',
+                        color: 'white',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: '4px',
+                        fontFamily: 'inherit'
+                    }}
+                >
+                    <span>Details</span>
+                    <span className="arrow">&darr;</span>
+                </button>
+            </div>
         </div>
 
         <div id="details-3" className={`card-details-dropdown ${activeDropdown === 'details-3' ? 'open' : ''}`}>
@@ -239,9 +284,27 @@ export default function Home() {
                     <span className="fs-tag">Retail</span>
                 </div>
             </div>
-            <div className="scroll-down-indicator"><a href="#" onClick={(e) => toggleDropdown('details-4', e)} className="toggle-details" data-target="details-4"
-                    style={{'color': 'white', 'textDecoration': 'none'}}><span>Details</span></a> <span
-                    className="arrow">&darr;</span></div>
+            <div className="scroll-down-indicator">
+                <button 
+                    onClick={(e) => toggleDropdown('details-4', e)} 
+                    className="toggle-details"
+                    style={{
+                        background: 'none',
+                        border: 'none',
+                        padding: 0,
+                        cursor: 'pointer',
+                        color: 'white',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        gap: '4px',
+                        fontFamily: 'inherit'
+                    }}
+                >
+                    <span>Details</span>
+                    <span className="arrow">&darr;</span>
+                </button>
+            </div>
         </div>
 
         <div id="details-4" className={`card-details-dropdown ${activeDropdown === 'details-4' ? 'open' : ''}`}>
@@ -401,43 +464,125 @@ export default function Home() {
                 {/*  Right Scrolling Column  */}
                 <div className="beliefs-right" style={{'flex': '1'}}>
                     <div className="belief-scroll-item" data-index="0" data-tag="On Strategy"
-                        style={{'padding': '15vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                        style={{'padding': '8vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
                         <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Strategy
                             isn't a phase you rush through.</h4>
                         <p style={{'fontSize': '14px', 'color': '#888888'}}>It's the reason everything else works.</p>
                     </div>
                     <div className="belief-scroll-item" data-index="1" data-tag="On Content"
-                        style={{'padding': '15vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                        style={{'padding': '8vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
                         <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Content
                             should be an engine, not a slot machine.</h4>
                         <p style={{'fontSize': '14px', 'color': '#888888'}}>Systems beat one-offs. Every time.</p>
                     </div>
                     <div className="belief-scroll-item" data-index="2" data-tag="On Briefs"
-                        style={{'padding': '15vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                        style={{'padding': '8vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
                         <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>The brief is
                             rarely about what the brief says it's about.</h4>
                         <p style={{'fontSize': '14px', 'color': '#888888'}}>Dig until you hit the real question.</p>
                     </div>
                     <div className="belief-scroll-item" data-index="3" data-tag="On Creative"
-                        style={{'padding': '15vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                        style={{'padding': '8vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
                         <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>The best
                             creative comes from understanding, not guessing.</h4>
                         <p style={{'fontSize': '14px', 'color': '#888888'}}>Do the homework. Then do the fun part.</p>
                     </div>
                     <div className="belief-scroll-item" data-index="4" data-tag="On Attention"
-                        style={{'padding': '15vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                        style={{'padding': '8vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
                         <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Compound
                             interest works for attention too.</h4>
                         <p style={{'fontSize': '14px', 'color': '#888888'}}>Show up consistently, or don't bother showing up.
                         </p>
                     </div>
                     <div className="belief-scroll-item" data-index="5" data-tag="On Reality"
-                        style={{'padding': '15vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                        style={{'padding': '8vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
                         <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Virality
                             isn't luck.</h4>
                         <p style={{'fontSize': '14px', 'color': '#888888'}}>It's research dressed up as spontaneity.</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    {/*  Testimonials  */}
+    <section className="testimonials-section" id="testimonials">
+        <div className="container">
+
+            {/* Quote image — 205×180 from assets */}
+            <img
+                src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/testimonialsimg/Qotes.png`}
+                alt=""
+                width={205}
+                height={180}
+                className="testimonials-quote-img"
+                aria-hidden="true"
+            />
+
+            {/* Carousel wrapper — relative so arrows can be absolutely placed on sides */}
+            <div className="testimonials-carousel-wrapper">
+
+                {/* LEFT arrow */}
+                <button className="t-arrow t-arrow--prev" id="tPrev" aria-label="Previous testimonial">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                </button>
+
+                {/* Carousel track — padding lets shadows breathe on all sides */}
+                <div className="testimonials-carousel" id="testimonialsCarousel">
+
+                    {/* Card 1 */}
+                    <div className="testimonial-card">
+                        <div className="testimonial-author">
+                            <div className="testimonial-avatar">
+                                <img
+                                    src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/testimonialsimg/person1.jpg`}
+                                    alt="Esther Hills"
+                                    width={80}
+                                    height={80}
+                                />
+                            </div>
+                            <div className="testimonial-meta">
+                                <span className="testimonial-name">Esther Hills</span>
+                                <span className="testimonial-role">Lead Intranet Technician</span>
+                            </div>
+                        </div>
+                        <p className="testimonial-text">
+                            Omnis totam molestiae delectus nemo alias nesciunt harum et. Nobis dolorum excepturi quod vel. Sunt est qui ab non dolores repellat rem impedit dolores. Ut ea rerum cum eum. Alias dolores tempore illo accusantium est et voluptatem voluptas.
+                        </p>
+                    </div>
+
+                    {/* Card 2 */}
+                    <div className="testimonial-card">
+                        <div className="testimonial-author">
+                            <div className="testimonial-avatar">
+                                <img
+                                    src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/testimonialsimg/person2.jpg`}
+                                    alt="Ethel Johnston"
+                                    width={80}
+                                    height={80}
+                                />
+                            </div>
+                            <div className="testimonial-meta">
+                                <span className="testimonial-name">Ethel Johnston</span>
+                                <span className="testimonial-role">Human Directives Director</span>
+                            </div>
+                        </div>
+                        <p className="testimonial-text">
+                            Fuga et debitis numquam omnis sed explicabo rem. Temporibus aut earum harum sint enim quia sit. Odit blanditiis illum amet doloribus adipisci corrupti explicabo. Qui non omnis eum consequatur voluptas aut ut dolor aut.
+                        </p>
+                    </div>
+
+                </div>
+
+                {/* RIGHT arrow */}
+                <button className="t-arrow t-arrow--next" id="tNext" aria-label="Next testimonial">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </button>
+
             </div>
         </div>
     </section>
@@ -462,10 +607,18 @@ export default function Home() {
                 </div>
                 <div className="contact-form-side">
                     <form className="contact-form" id="contact-us-form">
-                        <input type="text" placeholder="Name" required />
-                        <input type="email" placeholder="Email" required />
-                        <input type="text" placeholder="What are you looking for" required />
-                        <textarea placeholder="Tell us more" rows={4} required></textarea>
+                        <div className="form-field">
+                            <input type="text" name="name" placeholder="Name" required />
+                        </div>
+                        <div className="form-field">
+                            <input type="email" name="email" placeholder="Email" required />
+                        </div>
+                        <div className="form-field">
+                            <input type="text" name="looking_for" placeholder="What are you looking for" required />
+                        </div>
+                        <div className="form-field form-field--textarea">
+                            <textarea name="message" placeholder="Tell us more" rows={4} required></textarea>
+                        </div>
                         <button type="submit" className="btn-gradient">Send It</button>
                     </form>
                     <div id="contact-success-message" className="success-message" style={{'display': 'none'}}>

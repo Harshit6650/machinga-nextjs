@@ -53,7 +53,7 @@ body {
 .site-header.header-hidden { transform: translateY(-100%); }
 
 .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -0.5px; color: #000000; display: flex; align-items: center; position: relative; z-index: 1001; }
-.header-logo-img { width: clamp(200px, 22vw, 320px); height: auto; max-height: 80px; object-fit: contain; }
+.header-logo-img { width: 206px; height: 44px; object-fit: contain; flex-shrink: 0; }
 
 .desktop-nav a {
     color: #000000;
@@ -585,21 +585,23 @@ body {
 .statement-section .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
 .statement-label { color: #37A939; font-size: 0.9rem; font-weight: 600; margin-bottom: 2rem; display: block; }
 .statement-section h2 {
-    font-size: 3rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 40px;
     font-weight: 500;
     margin-bottom: 2rem;
     max-width: 100%;
     line-height: 1.2;
     text-transform: uppercase;
     color: #1a1a1a;
+    white-space: nowrap;
 }
-.statement-section p { font-size: 1.2rem; color: #888888; max-width: 800px; font-weight: 400; line-height: 1.6; margin: 0; }
+.statement-section p { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 18px; color: #888888; max-width: 800px; font-weight: 400; line-height: 1.6; margin: 0; }
 
 /* ══════════════════════════════════════════════════════════════
    Pricing Cards
    ══════════════════════════════════════════════════════════════ */
-.pricing-section { padding: 44px 0; background: #ffffff; color: #000000; }
-.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.pricing-section { padding: 44px 0 80px; background: #ffffff; color: #000000; overflow: visible; }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; overflow: visible; padding-bottom: 10px; }
 .pricing-card {
     background: linear-gradient(to bottom, #ffffff 0%, #f4f4f4 100%);
     border: 1px solid #eaeaea;
@@ -609,9 +611,10 @@ body {
     display: flex;
     flex-direction: column;
     box-shadow: 0 15px 30px -10px rgba(0,0,0,0.08);
+    overflow: visible;
 }
-.pricing-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.12); }
-.pricing-card.highlight-card { border-color: #0FC823; }
+.pricing-card:hover { transform: translateY(-5px); border-color: #0FC823; box-shadow: 0 20px 40px -10px rgba(0,0,0,0.18); }
+
 .pricing-card h3 { font-size: 2rem; margin-bottom: 1rem; text-transform: uppercase; font-weight: 500; line-height: 1.2; color: #1a1a1a; }
 .pricing-card h4 { font-size: 1rem; color: #0FC823; margin-bottom: 2rem; font-style: italic; font-weight: 500; }
 .pricing-card .desc { color: #888888; margin-bottom: 2rem; font-size: 0.95rem; min-height: 120px; line-height: 1.6; }
@@ -645,7 +648,7 @@ body {
 /* ══════════════════════════════════════════════════════════════
    Beliefs Section
    ══════════════════════════════════════════════════════════════ */
-.beliefs-section { padding: 44px 0; background: #ffffff; color: #000000; }
+.beliefs-section { padding: 44px 0; background: #ffffff; color: #000000; position: relative; z-index: 1; overflow: visible; }
 .beliefs-heading { font-size: 2.5rem; font-weight: 800; margin-bottom: 4rem; color: #1a1a1a; }
 .beliefs-list { border-top: 1px solid #eaeaea; }
 .belief-item {
@@ -668,6 +671,167 @@ body {
 .belief-content p {
     font-size: 0.95rem;
     color: #888888;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Testimonials Section
+   ══════════════════════════════════════════════════════════════ */
+.testimonials-section {
+    padding: 60px 0 80px;
+    background: #ffffff;
+    position: relative;
+    z-index: 2;             /* Sits above beliefs so bottom shadows are never clipped */
+    overflow: visible;
+}
+
+/* Quote image */
+.testimonials-quote-img {
+    display: block;
+    width: 205px;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 24px;
+    flex-shrink: 0;
+}
+
+/* ── Carousel wrapper: arrow | track | arrow ──────────────── */
+.testimonials-carousel-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Arrow buttons — left and right sides */
+.t-arrow {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1.5px solid #e0e0e0;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #1a1a1a;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 2;
+}
+.t-arrow:hover {
+    background: #3E66DF;
+    border-color: #3E66DF;
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(62,102,223,0.3);
+    transform: scale(1.08);
+}
+.t-arrow:active { transform: scale(0.95); }
+
+/* Carousel track — top/bottom padding lets the subtle shadow breathe */
+.testimonials-carousel {
+    flex: 1;
+    display: flex;
+    gap: 40px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    /* 20px top/bottom padding: shadow is very small so 20px is enough */
+    /* 24px left padding: visible space before first card (shows left arrow works) */
+    padding: 20px 0 20px 24px;
+    margin: -20px 0;                    /* Compensate only vertical so layout is unchanged */
+}
+.testimonials-carousel::-webkit-scrollbar { display: none; }
+
+/* Individual card — fixed 600×288, border-only shadow */
+.testimonial-card {
+    flex: 0 0 600px;                    /* Fixed 600px width */
+    width: 600px;
+    height: 288px;                      /* Fixed 288px height */
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.75rem 2rem;
+    scroll-snap-align: start;
+    /* Figma drop shadow: X:0 Y:0 Blur:20 Spread:0 #000 5% */
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.testimonial-card:hover {
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.10);
+    transform: translateY(-2px);
+}
+
+/* Author row: avatar + name/role */
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Circular avatar with blue border */
+.testimonial-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid rgba(62, 102, 223, 0.3);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.testimonial-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+/* Name & role */
+.testimonial-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.testimonial-name {
+    font-family: var(--font-manrope, 'Manrope', sans-serif);
+    font-size: 20px;
+    font-weight: 700;
+    color: #3E66DF;
+    line-height: 1.2;
+}
+.testimonial-role {
+    font-size: 0.85rem;
+    color: #888888;
+    font-weight: 400;
+}
+
+/* Quote paragraph */
+.testimonial-text {
+    font-size: 0.95rem;
+    color: #555555;
+    line-height: 1.75;
+    margin: 0;
+}
+
+/* ── Responsive ─────────────────────────── */
+@media (max-width: 900px) {
+    /* On narrower screens, let card shrink but keep peek effect */
+    .testimonial-card { flex: 0 0 85vw; width: 85vw; height: auto; }
+}
+@media (max-width: 768px) {
+    .testimonial-card { flex: 0 0 82vw; width: 82vw; height: auto; }
+    .testimonials-quote-img { width: 130px; height: 115px; }
+    .t-arrow { width: 40px; height: 40px; }
+}
+@media (max-width: 480px) {
+    .testimonial-card { flex: 0 0 88vw; width: 88vw; height: auto; }
+    .testimonials-quote-img { width: 100px; height: 88px; }
+    .testimonials-carousel-wrapper { gap: 0.25rem; }
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -719,30 +883,59 @@ body {
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-}
-.contact-form input,
-.contact-form textarea {
-    width: 100%;
-    padding: 1.2rem 1.5rem;
-    border: 1px solid #eaeaea;
-    border-radius: 30px;
-    background: #ffffff;
-    font-family: inherit;
-    font-size: 1rem;
-    outline: none;
-    transition: border-color 0.3s;
-}
-.contact-form textarea {
-    border-radius: 20px;
-    resize: vertical;
-}
-.contact-form input:focus,
-.contact-form textarea:focus {
-    border-color: #0FC823;
+    gap: 1rem;
 }
 
+/* ── Field wrapper ─────────────────────────── */
+.form-field {
+    display: flex;
+    align-items: center;
+    border: 1px solid #eaeaea;
+    border-radius: 50px;
+    background: #ffffff;
+    padding: 0 1.5rem;
+    min-height: 56px;
+    transition: border-color 0.3s;
+}
+.form-field:focus-within {
+    border-color: #0FC823;
+}
+.form-field--textarea {
+    border-radius: 20px;
+    padding: 1rem 1.5rem;
+    min-height: unset;
+    align-items: flex-start;
+}
+
+.form-field input,
+.form-field textarea {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: #1a1a1a;
+    padding: 0;
+    width: 100%;
+}
+.form-field textarea {
+    resize: none;
+    min-height: 80px;
+    padding-top: 2px;
+}
+
+/* Placeholder styles — visible at rest, disappear on focus */
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+    color: #aaaaaa;
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+
 .success-message {
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -804,9 +997,10 @@ body {
     gap: 1.5rem;
 }
 .footer-logo-img {
-    height: 40px;
-    width: auto;
+    width: 206px;
+    height: 44px;
     object-fit: contain;
+    flex-shrink: 0;
 }
 .brand-top .divider {
     color: #444;

@@ -33,7 +33,7 @@ function t2f(sec) {
 
 // ── State Machine definition ──────────────────────────────────────────────────
 const STATES = [
-    { type: 'transition',startF: t2f(0.0),  endF: t2f(10.5),  fps: Math.round(FPS * 2.4), label: 'Expanding' },
+    { type: 'transition',startF: t2f(0.0),  endF: t2f(10.5),  fps: Math.round(FPS * 2.4), label: '' },
     { type: 'loop',      startF: t2f(10.5), endF: t2f(13.93), triggerPx: 60, greenPulse: true,  label: 'Think' },
     { type: 'transition',startF: t2f(13.93),endF: t2f(17.0),  fps: Math.round(FPS * 2.4), label: '' },
     { type: 'loop',      startF: t2f(17.0), endF: t2f(19.30), triggerPx: 60, greenPulse: true,  label: 'Make' },
@@ -41,8 +41,8 @@ const STATES = [
     { type: 'loop',      startF: t2f(24.88),endF: t2f(26.93), triggerPx: 60, greenPulse: true,  label: 'Run' },
     { type: 'transition',startF: t2f(26.93),endF: t2f(29.5),  fps: Math.round(FPS * 2.4), label: '' },
     { type: 'pause',     holdF:  t2f(30.0), triggerPx: 80,    greenPulse: false, label: 'Think · Make · Run' },
-    { type: 'transition',startF: t2f(30.0), endF: t2f(43.0),  fps: Math.round(FPS * 2.4), label: 'The Machinga Method' },
-    { type: 'pause',     holdF:  t2f(43.0), triggerPx: 80,    greenPulse: false, label: 'The Machinga Method' },
+    { type: 'transition',startF: t2f(30.0), endF: t2f(43.0),  fps: Math.round(FPS * 2.4), label: '' },
+    { type: 'pause',     holdF:  t2f(43.0), triggerPx: 80,    greenPulse: false, label: '' },
     { type: 'exit' },
 ];
 
@@ -835,6 +835,30 @@ document.querySelectorAll('.toggle-details').forEach(link => {
         }
     });
 });
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  TESTIMONIALS CAROUSEL — arrow navigation
+// ══════════════════════════════════════════════════════════════════════════════
+const carousel   = document.getElementById('testimonialsCarousel');
+const btnPrev    = document.getElementById('tPrev');
+const btnNext    = document.getElementById('tNext');
+
+if (carousel && btnPrev && btnNext) {
+    const getCardWidth = () => {
+        const firstCard = carousel.querySelector('.testimonial-card');
+        if (!firstCard) return 0;
+        const gap = parseInt(getComputedStyle(carousel).gap) || 24;
+        return firstCard.getBoundingClientRect().width + gap;
+    };
+
+    btnNext.addEventListener('click', () => {
+        carousel.scrollBy({ left: getCardWidth(), behavior: 'smooth' });
+    });
+
+    btnPrev.addEventListener('click', () => {
+        carousel.scrollBy({ left: -getCardWidth(), behavior: 'smooth' });
+    });
+}
 
     } catch (e) {
       console.error("HomeClientLogic Error:", e);

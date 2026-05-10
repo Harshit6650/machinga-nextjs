@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -8,6 +8,14 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "800"],
   display: "swap",
+  variable: "--font-inter",
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-manrope",
 });
 
 export const metadata: Metadata = {
@@ -51,7 +59,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className={`${inter.variable} ${manrope.variable} ${inter.className}`}>
       <head>
         <link rel="icon" type="image/png" href={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/machinga_logos.png`} />
       </head>
