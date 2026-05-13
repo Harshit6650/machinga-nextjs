@@ -604,24 +604,8 @@ window.addEventListener('scroll', () => {
 });
 
 // ══════════════════════════════════════════════════════════════════════════════
-//  FADE-IN — content sections
+//  FADE-IN / FADE-OUT — content sections (Moved to FadeObserver.tsx globally)
 // ══════════════════════════════════════════════════════════════════════════════
-const fadeObserver = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity   = 1;
-            entry.target.style.transform = 'translateY(0)';
-            obs.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.statement-section h2, .pricing-card, .belief-item').forEach(el => {
-    el.style.opacity    = 0;
-    el.style.transform  = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-    fadeObserver.observe(el);
-});
 
 // ══════════════════════════════════════════════════════════════════════════════
 //  WIND OVERLAY
