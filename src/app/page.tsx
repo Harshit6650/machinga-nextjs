@@ -359,17 +359,15 @@ export default function Home() {
     </section>
 
     {/*  Statement  */}
-    <section className="statement-section" id="statement">
+    <section className="statement-section reveal-on-scroll" id="statement">
         <div className="container">
-            <span className="statement-label">How We Work</span>
+            <span className="statement-label">HOW WE WORK</span>
             <h2>EARN ATTENTION WITH COMPOUND INTEREST.</h2>
-            <p>Most content fails because nobody thought about it. We figure out what your brand should say<br />the
-                insight that makes you uncopyable — then build the system to say it.</p>
         </div>
     </section>
 
     {/*  Pricing  */}
-    <section className="pricing-section" id="pricing">
+    <section className="pricing-section reveal-on-scroll" id="pricing">
         <div className="container pricing-grid">
             <div className="pricing-card">
                 <h3>CONTENT<br />ENGINE</h3>
@@ -382,6 +380,7 @@ export default function Home() {
                     <li>Ongoing production</li>
                     <li>Performance optimisation</li>
                 </ul>
+                <Link href="/appreciate" className="pricing-case-link">LIKE APPRECIATE →</Link>
                 <div className="price-box">
                     <span className="label">Starting at</span>
                     <span className="price">₹4L<span>/month</span></span>
@@ -398,6 +397,7 @@ export default function Home() {
                     <li>Scripts & briefs</li>
                     <li>Ongoing strategic counsel</li>
                 </ul>
+                <Link href="/aava" className="pricing-case-link">LIKE AAVA →</Link>
                 <div className="price-box">
                     <span className="label">Starting at</span>
                     <span className="price">₹1.5L<span>/month</span></span>
@@ -414,6 +414,7 @@ export default function Home() {
                     <li>Creative development</li>
                     <li>Full production</li>
                 </ul>
+                <Link href="/contraband" className="pricing-case-link">LIKE CONTRABAND →</Link>
                 <div className="price-box">
                     <span className="label">Starting at</span>
                     <span className="price">₹5L<span>/month</span></span>
@@ -422,91 +423,8 @@ export default function Home() {
         </div>
     </section>
 
-    {/*  About  */}
-    <section className="about-section" id="about">
-        <div className="container">
-            <div className="about-header">
-                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/coconut.png`} alt="Coconut" className="about-coconut-img" />
-                <h2 className="name-title">MACHINGA</h2>
-                <p className="pronunciation">/MUH - CHIN - GAH/</p>
-            </div>
-            <div className="about-text-grid">
-                <p className="definition">A palm-sized coconut fruit used to make innovative handmade toys for kids of all
-                    ages. Crudely translated from Malayalam.</p>
-                <p className="explanation">We liked the word. It's playful. It's crafted. It's distinctly Indian. It makes
-                    people ask. "What does that mean?" And then we get to tell them.</p>
-            </div>
-        </div>
-    </section>
-
-    {/*  Beliefs  */}
-    <section className="beliefs-section">
-        <div className="container">
-            <span className="statement-label">What We Believe</span>
-            <h3 className="beliefs-heading">Things we believe to be true.</h3>
-
-            <div className="beliefs-scroll-layout" style={{'display': 'flex', 'position': 'relative'}}>
-                {/*  Left Sticky Column  */}
-                <div className="beliefs-left"
-                    style={{'width': '350px', 'position': 'sticky', 'top': '50vh', 'height': '60px', 'transform': 'translateY(-50%)', 'display': 'flex', 'alignItems': 'flex-start', 'gap': '12px', 'overflow': 'hidden', 'fontSize': '40px', 'fontWeight': '800', 'color': '#999999', 'textTransform': 'uppercase'}}>
-                    <span style={{'height': '60px', 'lineHeight': '60px'}}>ON</span>
-                    <div id="dynamic-belief-words"
-                        style={{'display': 'flex', 'flexDirection': 'column', 'transition': 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)', 'marginTop': '0'}}>
-                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Strategy</span>
-                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Content</span>
-                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Briefs</span>
-                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Creative</span>
-                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Attention</span>
-                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Reality</span>
-                    </div>
-                </div>
-
-                {/*  Right Scrolling Column  */}
-                <div className="beliefs-right" style={{'flex': '1'}}>
-                    <div className="belief-scroll-item" data-index="0" data-tag="On Strategy"
-                        style={{'padding': '8vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
-                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Strategy
-                            isn't a phase you rush through.</h4>
-                        <p style={{'fontSize': '14px', 'color': '#888888'}}>It's the reason everything else works.</p>
-                    </div>
-                    <div className="belief-scroll-item" data-index="1" data-tag="On Content"
-                        style={{'padding': '8vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
-                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Content
-                            should be an engine, not a slot machine.</h4>
-                        <p style={{'fontSize': '14px', 'color': '#888888'}}>Systems beat one-offs. Every time.</p>
-                    </div>
-                    <div className="belief-scroll-item" data-index="2" data-tag="On Briefs"
-                        style={{'padding': '8vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
-                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>The brief is
-                            rarely about what the brief says it's about.</h4>
-                        <p style={{'fontSize': '14px', 'color': '#888888'}}>Dig until you hit the real question.</p>
-                    </div>
-                    <div className="belief-scroll-item" data-index="3" data-tag="On Creative"
-                        style={{'padding': '8vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
-                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>The best
-                            creative comes from understanding, not guessing.</h4>
-                        <p style={{'fontSize': '14px', 'color': '#888888'}}>Do the homework. Then do the fun part.</p>
-                    </div>
-                    <div className="belief-scroll-item" data-index="4" data-tag="On Attention"
-                        style={{'padding': '8vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
-                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Compound
-                            interest works for attention too.</h4>
-                        <p style={{'fontSize': '14px', 'color': '#888888'}}>Show up consistently, or don't bother showing up.
-                        </p>
-                    </div>
-                    <div className="belief-scroll-item" data-index="5" data-tag="On Reality"
-                        style={{'padding': '8vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
-                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Virality
-                            isn't luck.</h4>
-                        <p style={{'fontSize': '14px', 'color': '#888888'}}>It's research dressed up as spontaneity.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     {/*  Testimonials  */}
-    <section className="testimonials-section" id="testimonials">
+    <section className="testimonials-section reveal-on-scroll" id="testimonials">
         <div className="container">
 
             {/* Quote image — 205×180 from assets */}
@@ -587,22 +505,108 @@ export default function Home() {
         </div>
     </section>
 
+    {/*  Beliefs  */}
+    <section className="beliefs-section reveal-on-scroll">
+        <div className="container">
+            <span className="statement-label">THINGS WE BELIEVE TO BE TRUE</span>
+
+            <div className="beliefs-scroll-layout" style={{'display': 'flex', 'position': 'relative', 'marginTop': '3rem'}}>
+                {/*  Left Sticky Column  */}
+                <div className="beliefs-left"
+                    style={{'width': '350px', 'position': 'sticky', 'top': '50vh', 'height': '60px', 'transform': 'translateY(-50%)', 'display': 'flex', 'alignItems': 'flex-start', 'gap': '12px', 'overflow': 'hidden', 'fontSize': '40px', 'fontWeight': '800', 'color': '#999999', 'textTransform': 'uppercase'}}>
+                    <span style={{'height': '60px', 'lineHeight': '60px'}}>ON</span>
+                    <div id="dynamic-belief-words"
+                        style={{'display': 'flex', 'flexDirection': 'column', 'transition': 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)', 'marginTop': '0'}}>
+                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Strategy</span>
+                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Content</span>
+                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Briefs</span>
+                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Creative</span>
+                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Attention</span>
+                        <span style={{'height': '60px', 'lineHeight': '60px', 'color': '#1a1a1a'}}>Reality</span>
+                    </div>
+                </div>
+
+                {/*  Right Scrolling Column  */}
+                <div className="beliefs-right" style={{'flex': '1'}}>
+                    <div className="belief-scroll-item" data-index="0" data-tag="On Strategy"
+                        style={{'padding': '3vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Strategy
+                            isn't a phase you rush through.</h4>
+                        <p style={{'fontSize': '14px', 'color': '#888888'}}>It's the reason everything else works.</p>
+                    </div>
+                    <div className="belief-scroll-item" data-index="1" data-tag="On Content"
+                        style={{'padding': '3vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Content
+                            should be an engine, not a slot machine.</h4>
+                        <p style={{'fontSize': '14px', 'color': '#888888'}}>Systems beat one-offs. Every time.</p>
+                    </div>
+                    <div className="belief-scroll-item" data-index="2" data-tag="On Briefs"
+                        style={{'padding': '3vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>The brief is
+                            rarely about what the brief says it's about.</h4>
+                        <p style={{'fontSize': '14px', 'color': '#888888'}}>Dig until you hit the real question.</p>
+                    </div>
+                    <div className="belief-scroll-item" data-index="3" data-tag="On Creative"
+                        style={{'padding': '3vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>The best
+                            creative comes from understanding, not guessing.</h4>
+                        <p style={{'fontSize': '14px', 'color': '#888888'}}>Do the homework. Then do the fun part.</p>
+                    </div>
+                    <div className="belief-scroll-item" data-index="4" data-tag="On Attention"
+                        style={{'padding': '3vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Compound
+                            interest works for attention too.</h4>
+                        <p style={{'fontSize': '14px', 'color': '#888888'}}>Show up consistently, or don't bother showing up.
+                        </p>
+                    </div>
+                    <div className="belief-scroll-item" data-index="5" data-tag="On Reality"
+                        style={{'padding': '3vh 0', 'opacity': '0.2', 'transition': 'opacity 0.5s ease'}}>
+                        <h4 style={{'fontSize': '20px', 'fontWeight': '800', 'color': '#1a1a1a', 'marginBottom': '8px'}}>Virality
+                            isn't luck.</h4>
+                        <p style={{'fontSize': '14px', 'color': '#888888'}}>It's research dressed up as spontaneity.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {/*  About  */}
+    <section className="about-section reveal-on-scroll" id="about">
+        <div className="container">
+            <div className="about-header">
+                <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/coconut.png`} alt="Coconut" className="about-coconut-img" />
+                <h2 className="name-title">MACHINGA</h2>
+            </div>
+            <div className="about-text-grid">
+                <div className="about-left-col">
+                    <p className="pronunciation">/MUH - CHIN - GAH/</p>
+                    <p className="definition">A palm-sized coconut fruit used to make innovative handmade toys for kids of all
+                        ages. Crudely translated from Malayalam.</p>
+                </div>
+                <div className="about-right-col">
+                    <p className="explanation">We liked the word. It's playful. It's crafted. It's distinctly Indian. It makes
+                        people ask. "What does that mean?" And then we get to tell them.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     {/*  Contact  */}
-    <section className="contact-section" id="contact">
+    <section className="contact-section reveal-on-scroll" id="contact">
         <div className="container">
             <div className="contact-card">
                 <div className="contact-info-side">
                     <h2 className="huge-text">LET'S MAKE<br />SOMETHING</h2>
                     <p className="prompt-text">Got a challenge? A budget? A vague idea you want to explore? We're in.</p>
-                    <a href="mailto:anand@studiomachinga.com" className="email-link">
+                    <a href="mailto:hello@studiomachinga.com" className="email-link">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0FC823" strokeWidth="2"
                             strokeLinecap="round" strokeLinejoin="round">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
                             </path>
                             <polyline points="22,6 12,13 2,6"></polyline>
                         </svg>
-                        anand@studiomachinga.com
+                        hello@studiomachinga.com
                     </a>
                 </div>
                 <div className="contact-form-side">

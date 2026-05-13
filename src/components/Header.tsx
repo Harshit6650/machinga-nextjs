@@ -20,9 +20,9 @@ export default function Header() {
           className="header-logo-img"
         />
       </Link>
-      
-      <button 
-        className={`menu-toggle ${isOpen ? "active" : ""}`} 
+
+      <button
+        className={`menu-toggle ${isOpen ? "active" : ""}`}
         aria-label="Toggle Menu"
         onClick={toggleMenu}
       >
@@ -30,7 +30,7 @@ export default function Header() {
         <span></span>
         <span></span>
       </button>
-      
+
       <nav className={`desktop-nav ${isOpen ? "active" : ""}`}>
         <Link href="/" onClick={() => setIsOpen(false)}>Home</Link>
         <Link href="/#work" onClick={() => setIsOpen(false)}>Work</Link>
