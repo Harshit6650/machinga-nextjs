@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useEffect, useRef } from 'react';
 
 const isProd = process.env.NODE_ENV === 'production';
 const getAssetPath = (path: string) => isProd ? `/machinga-nextjs${path}` : path;
@@ -15,10 +16,46 @@ const projects = [
 
 export default function Carousel({ currentProject }: { currentProject: string }) {
   const displayProjects = projects.filter(p => p.id !== currentProject);
+  const duplicatedProjects = [...displayProjects, ...displayProjects, ...displayProjects]; // Duplicate for seamless infinite scroll
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    
+    let animationId: number;
+    let isPaused = false;
+    
+    const animate = () => {
+      if (!isPaused && track) {
+        track.scrollLeft += 1; // Adjust speed here
+        // If scrolled past a third (since we tripled it), reset
+        if (track.scrollLeft >= track.scrollWidth / 3) {
+          track.scrollLeft -= track.scrollWidth / 3;
+        }
+      }
+      animationId = requestAnimationFrame(animate);
+    };
+    
+    animationId = requestAnimationFrame(animate);
+    
+    const handleMouseEnter = () => isPaused = true;
+    const handleMouseLeave = () => isPaused = false;
+    
+    track.addEventListener('mouseenter', handleMouseEnter);
+    track.addEventListener('mouseleave', handleMouseLeave);
+    
+    return () => {
+      cancelAnimationFrame(animationId);
+      track.removeEventListener('mouseenter', handleMouseEnter);
+      track.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, []);
 
   const scrollByAmount = (amount: number) => {
-    const el = document.getElementById('work-carousel');
-    if (el) el.scrollBy({ left: amount, behavior: 'smooth' });
+    if (trackRef.current) {
+      trackRef.current.scrollBy({ left: amount, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -28,9 +65,9 @@ export default function Carousel({ currentProject }: { currentProject: string })
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </button>
 
-        <div id="work-carousel" className="carousel-track" style={{ display: 'flex', gap: '2rem', overflowX: 'auto', padding: '0 max(2rem, calc(50vw - 570px)) 2rem', scrollSnapType: 'x mandatory', scrollbarWidth: 'none' }}>
-          {displayProjects.map((p) => (
-            <div key={p.id} className="carousel-item">
+        <div id="work-carousel" ref={trackRef} className="carousel-track" style={{ display: 'flex', gap: '2rem', overflowX: 'auto', padding: '0 max(2rem, calc(50vw - 570px)) 2rem', scrollbarWidth: 'none' }}>
+          {duplicatedProjects.map((p, index) => (
+            <div key={`${p.id}-${index}`} className="carousel-item" style={{ flexShrink: 0 }}>
               <img src={p.img} alt={p.title} />
               <div className="carousel-text-overlay">
                 <h3 className="carousel-glass-text">{p.title}</h3>

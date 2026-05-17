@@ -23,7 +23,11 @@ export default function ContrabandPage() {
                 </div>
                 <div className="meta-item">
                     <span className="meta-label">Work</span>
-                    <span className="meta-value" style={{fontWeight: "600"}}>Campaign Concept + Script + Production</span>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "4px" }}>
+                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Campaign Concept</span>
+                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Script</span>
+                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Production</span>
+                    </div>
                 </div>
                 <div className="meta-item">
                     <span className="meta-label">Platform</span>

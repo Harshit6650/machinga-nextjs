@@ -23,7 +23,11 @@ export default function AppreciatePage() {
                 </div>
                 <div className="meta-item">
                     <span className="meta-label">Work</span>
-                    <span className="meta-value">Content Strategy + Engine Build + Ongoing Production</span>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "4px" }}>
+                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Content Strategy</span>
+                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Engine Build</span>
+                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Ongoing Production</span>
+                    </div>
                 </div>
                 <div className="meta-item">
                     <span className="meta-label">Platform</span>
@@ -52,9 +56,9 @@ export default function AppreciatePage() {
                 <p className="cs-section-text">Tip carousels. Market update graphics. Talking heads explaining compound interest with the energy of someone who just learned what compound interest is. It's not wrong. It's just invisible. When every brand in a category sounds identical, being educational isn't a differentiator. It's background noise. Appreciate came to us as a clean slate. A new investing app helping Indians access US markets. Good product. Real ambition. No following, no content, no established voice. The brief was to build all three from scratch. We could have made better finance content than everyone else. We didn't think that was the right bet.</p>
             </div>
 
-            <div className="cs-image-center">
+            <div className="cs-image-center" style={{ display: "flex", justifyContent: "center", width: "100%", margin: "2rem 0" }}>
                 <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Appreciate case studies assets/instagram_image.jpg`} alt="App Mockup Challenge"
-                    style={{maxWidth: "300px", borderRadius: "20px", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}} />
+                    style={{maxWidth: "100%", width: "300px", height: "auto", borderRadius: "20px", boxShadow: "0 20px 40px rgba(0,0,0,0.1)"}} />
             </div>
 
             <div className="cs-content-narrow" style={{marginTop: "4rem"}}>

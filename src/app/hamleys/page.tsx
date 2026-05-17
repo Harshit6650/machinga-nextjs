@@ -26,8 +26,12 @@ export default function HamleysPage() {
                     <span className="meta-value" style={{fontWeight: "800", fontSize: "18px"}}>#SkipTheAwkward</span>
                 </div>
                 <div className="meta-item">
-                    <span className="meta-label">Platform</span>
-                    <span className="meta-value" style={{fontWeight: "800", fontSize: "18px"}}>Campaign Strategy + Creative + On-Ground Activation</span>
+                    <span className="meta-label">Work</span>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "4px" }}>
+                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Campaign Strategy</span>
+                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Creative</span>
+                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>On-Ground Activation</span>
+                    </div>
                 </div>
                 <div className="meta-item">
                     <span className="meta-label">Result</span>

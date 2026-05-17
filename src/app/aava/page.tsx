@@ -23,7 +23,11 @@ export default function AavaPage() {
                 </div>
                 <div className="meta-item">
                     <span className="meta-label">Work</span>
-                    <span className="meta-value" style={{fontWeight: "600"}}>Brand Positioning + Campaign Strategy + Film Production</span>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "4px" }}>
+                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Brand Positioning</span>
+                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Campaign Strategy</span>
+                        <span style={{ padding: "8px 12px", border: "1px solid #888", color: "#888", borderRadius: "50px", fontSize: "14px" }}>Film Production</span>
+                    </div>
                 </div>
                 <div className="meta-item">
                     <span className="meta-label">Platform</span>

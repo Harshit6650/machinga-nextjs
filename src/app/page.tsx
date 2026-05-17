@@ -572,7 +572,7 @@ export default function Home() {
 
     {/*  About  */}
     <section className="about-section reveal-on-scroll" id="about">
-        <div className="container">
+        <div className="container" style={{ paddingTop: "80px" }}>
             <div className="about-header">
                 <img src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/coconut.png`} alt="Coconut" className="about-coconut-img" />
                 <h2 className="name-title">MACHINGA</h2>
