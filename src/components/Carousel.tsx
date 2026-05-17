@@ -52,18 +52,12 @@ export default function Carousel({ currentProject }: { currentProject: string })
     };
   }, []);
 
-  const scrollByAmount = (amount: number) => {
-    if (trackRef.current) {
-      trackRef.current.scrollBy({ left: amount, behavior: 'smooth' });
-    }
-  };
+
 
   return (
     <section className="cs-carousel-section" style={{ padding: '2rem 0 8rem', backgroundColor: '#ffffff', overflow: 'hidden', position: 'relative' }}>
       <div style={{ position: 'relative', width: '100%' }}>
-        <button className="carousel-nav-btn carousel-prev" onClick={() => scrollByAmount(-400)}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-        </button>
+
 
         <div id="work-carousel" ref={trackRef} className="carousel-track" style={{ display: 'flex', gap: '2rem', overflowX: 'auto', padding: '0 max(2rem, calc(50vw - 570px)) 2rem', scrollbarWidth: 'none' }}>
           {duplicatedProjects.map((p, index) => (
@@ -78,9 +72,7 @@ export default function Carousel({ currentProject }: { currentProject: string })
           ))}
         </div>
 
-        <button className="carousel-nav-btn carousel-next" onClick={() => scrollByAmount(400)}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        </button>
+
       </div>
     </section>
   );
