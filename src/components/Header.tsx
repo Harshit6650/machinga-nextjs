@@ -11,7 +11,12 @@ export default function Header() {
 
   return (
     <header className="site-header">
-      <Link href="/" className="logo">
+      <Link href="/" className="logo" onClick={(e) => {
+        if (typeof window !== 'undefined' && window.location.pathname === '/') {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }}>
         <img
           src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Machinga logo with text.png`}
           alt="Machinga"
