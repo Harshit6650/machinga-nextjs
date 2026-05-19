@@ -81,7 +81,7 @@ export default function Home() {
     {/*  Work Section  */}
     <section className="fs-cards-section" id="work">
         <div className="fs-card">
-            <video className="fs-card-bg" src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Appreciate.MP4`} autoPlay loop muted playsInline></video>
+            <video className="fs-card-bg" src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Appreciate.MP4`} loop muted playsInline preload="none"></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">APPRECIATE</h2>
                 <p className="fs-card-sub">How a fintech compounds interest</p>
@@ -150,7 +150,7 @@ export default function Home() {
         </div>
 
         <div className="fs-card">
-            <video className="fs-card-bg" src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Contraband.MP4`} autoPlay loop muted playsInline></video>
+            <video className="fs-card-bg" src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/Contraband.MP4`} loop muted playsInline preload="none"></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">CONTRABAND</h2>
                 <p className="fs-card-sub">How a stain launched a luxury fragrance to 88 million people</p>
@@ -211,7 +211,7 @@ export default function Home() {
         </div>
 
         <div className="fs-card">
-            <video className="fs-card-bg" src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/aava.mp4`} autoPlay loop muted playsInline></video>
+            <video className="fs-card-bg" src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/aava.mp4`} loop muted playsInline preload="none"></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">AAVA</h2>
                 <p className="fs-card-sub">How two words made a 20-year-old water brand uncopyable</p>
@@ -272,7 +272,7 @@ export default function Home() {
         </div>
 
         <div className="fs-card">
-            <video className="fs-card-bg" src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/hamleys.mp4`} autoPlay loop muted playsInline></video>
+            <video className="fs-card-bg" src={`${process.env.NODE_ENV === 'production' ? '/machinga-nextjs' : ''}/assets/hamleys.mp4`} loop muted playsInline preload="none"></video>
             <div className="fs-card-content">
                 <h2 className="fs-card-title">HAMLEYS</h2>
                 <p className="fs-card-sub">How a 250-year-old toy store helped Gen Z defuse a time bomb on Valentine's Day

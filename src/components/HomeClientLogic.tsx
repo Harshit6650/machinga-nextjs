@@ -25,7 +25,7 @@ export default function HomeClientLogic() {
 const isMobileView = window.innerWidth <= 1024;
 const FPS         = 24;
 const FRAME_COUNT = isMobileView ? 981 : 1079;
-const FRAMES_DIR  = isMobileView ? 'pencilbombframesformobile' : 'pencilbombframes';
+const FRAMES_DIR  = isMobileView ? 'pencilbombframesformobile' : 'PencilBombFrames';
 
 function t2f(sec) {
     return Math.max(0, Math.min(FRAME_COUNT - 1, Math.round(sec * FPS) - 1));
