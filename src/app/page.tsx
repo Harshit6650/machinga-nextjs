@@ -8,6 +8,30 @@ import HomeClientLogic from '@/components/HomeClientLogic';
 export default function Home() {
   // Add state/refs for dropdowns and animations
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      // Sending as text/plain avoids CORS preflight errors with Google Apps Script
+      await fetch('https://script.google.com/macros/s/AKfycbwnJS-rSkg6w1dFoU-c2zCA6Kts52nmLnc0Z1w38-uJbGjANCbgRcQVVXIcE6cq2dzfXQ/exec', {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(data)
+      });
+    } catch (error) {
+      console.error("Submission error:", error);
+    }
+    
+    setIsSubmitting(false);
+    setIsFormSubmitted(true);
+  };
 
   const toggleDropdown = (id: string, e: React.MouseEvent) => {
     e.preventDefault();
@@ -610,25 +634,30 @@ export default function Home() {
                     </a>
                 </div>
                 <div className="contact-form-side">
-                    <form className="contact-form" id="contact-us-form">
-                        <div className="form-field">
-                            <input type="text" name="name" placeholder="Name" required />
+                    {!isFormSubmitted ? (
+                        <form className="contact-form" id="contact-us-form" onSubmit={handleFormSubmit}>
+                            <div className="form-field">
+                                <input type="text" name="name" placeholder="Name" required />
+                            </div>
+                            <div className="form-field">
+                                <input type="email" name="email" placeholder="Email" required />
+                            </div>
+                            <div className="form-field">
+                                <input type="text" name="looking_for" placeholder="What are you looking for" required />
+                            </div>
+                            <div className="form-field form-field--textarea">
+                                <textarea name="message" placeholder="Tell us more" rows={4} required></textarea>
+                            </div>
+                            <button type="submit" className="btn-gradient" disabled={isSubmitting}>
+                                {isSubmitting ? 'Sending...' : 'Send It'}
+                            </button>
+                        </form>
+                    ) : (
+                        <div id="contact-success-message" className="success-message" style={{ display: 'block' }}>
+                            <h3>Thank you!</h3>
+                            <p>Your message has been received. We'll be in touch soon.</p>
                         </div>
-                        <div className="form-field">
-                            <input type="email" name="email" placeholder="Email" required />
-                        </div>
-                        <div className="form-field">
-                            <input type="text" name="looking_for" placeholder="What are you looking for" required />
-                        </div>
-                        <div className="form-field form-field--textarea">
-                            <textarea name="message" placeholder="Tell us more" rows={4} required></textarea>
-                        </div>
-                        <button type="submit" className="btn-gradient">Send It</button>
-                    </form>
-                    <div id="contact-success-message" className="success-message" style={{'display': 'none'}}>
-                        <h3>Thank you!</h3>
-                        <p>Your message has been received. We'll be in touch soon.</p>
-                    </div>
+                    )}
                 </div>
             </div>
         </div>
